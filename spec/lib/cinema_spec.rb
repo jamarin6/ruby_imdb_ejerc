@@ -54,12 +54,14 @@ describe Cinema do
 
   describe 'group_by_genre' do
     it 'group the movies of the cinema by genre' do
-      die_hard = Movie.new('Die Hard', 'Action', 'John McTiernan', Date.new(1988, 7, 22))
-      aladdin = Movie.new('Aladdin', 'Animation', 'Ron Clements', Date.new(1992, 11, 25))
-      clerks = Movie.new('Clerks', 'Comedy', 'Kevin Smith', Date.new(1994, 11, 30))
-      cinema = Cinema.new([die_hard, aladdin, clerks])
+     
+      die_hard_Db = double('die_hard_Db',{title: 'Die Hard', genre: 'Action', director: 'John McTiernan'})
+      aladdin_Db = double('aladdin_Db',{title: 'Aladdin', genre: 'Animation', director: 'Ron Clements'})
+      clerks_Db = double('clerks_Db',{title: 'Clerks', genre: 'Comedy', director: 'Kevin Smith'})
+      cinema = Cinema.new([die_hard_Db, aladdin_Db, clerks_Db])
 
       titles = cinema.group_by_genre
+
       expect(titles['Action']).to include('Die Hard')
       expect(titles['Action'].length).to eq(1)
 
@@ -71,11 +73,12 @@ describe Cinema do
 
   describe 'movies_per_genre' do
     it 'counts the number of movies in each genre' do
-      die_hard = Movie.new('Die Hard', 'Action', 'John McTiernan', Date.new(1988, 7, 22))
-      aladdin = Movie.new('Aladdin', 'Animation', 'Ron Clements', Date.new(1992, 11, 25))
-      aladdin2 = Movie.new('Aladdin 2', 'Animation', 'Toby Shelton', Date.new(1994, 5, 20))
-      clerks = Movie.new('Clerks', 'Comedy', 'Kevin Smith', Date.new(1994, 11, 30))
-      cinema = Cinema.new([die_hard, aladdin, aladdin2, clerks])
+
+      die_hard_Db = double('die_hard_Db',{title: 'Die Hard', genre: 'Action', director: 'John McTiernan'})
+      aladdin_Db = double('aladdin_Db',{title: 'Aladdin', genre: 'Animation', director: 'Ron Clements'})
+      clerks_Db = double('clerks_Db',{title: 'Clerks', genre: 'Comedy', director: 'Kevin Smith'})
+      aladdin2_Db = double('Aladdin 2_Db',{title: 'Aladdin 2', genre: 'Animation', director: 'Toby Shelton'})
+      cinema = Cinema.new([die_hard_Db, aladdin_Db, clerks_Db, aladdin2_Db])
 
       histogram = cinema.movies_per_genre
 
