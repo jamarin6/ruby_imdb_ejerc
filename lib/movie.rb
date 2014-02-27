@@ -32,6 +32,10 @@ class Movie
     (reviews.map(&:rating).reduce(&:+).to_f / reviews.length).round(2)
   end
 
+  def rating_imdb
+    imdb.rating
+  end
+
   def similarity_to(other_movie)
     return 100.0 if self == other_movie
 

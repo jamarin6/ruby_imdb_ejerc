@@ -4,7 +4,7 @@ class Cinema
   end
 
   def listing
-    @movies.sort.map{ |movie| movie.title }
+    @movies.map{ |movie| movie.title }.sort
   end
 
   def add_movie(movie)

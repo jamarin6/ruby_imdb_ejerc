@@ -9,6 +9,7 @@ describe Movie, :vcr do
 
   describe 'attributes' do
     it 'has a title' do
+      imdb =
       expect(movie.title).to eq('Die Hard')
     end
 
@@ -110,6 +111,13 @@ describe Movie, :vcr do
         man_on_fire = Movie.new('0328107')
 
         expect(top_gun.similarity_to(man_on_fire)).to eq(75.0)
+      end
+    end
+
+    context 'rating_imdb' do
+      it 'returns first rating by imdb' do
+        die_hard = Movie.new('0095016')
+        expect(die_hard.rating_imdb).to eq(8.3)
       end
     end
   end

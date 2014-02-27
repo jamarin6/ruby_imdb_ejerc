@@ -6,8 +6,10 @@ describe Cinema do
   describe 'add' do
     it 'adds a movie to our listing' do
       cinema = Cinema.new
+      pako = double('Pako', {title: 'Top Gun', director: 'Director'})#
+      cinema.add_movie(pako)#
 
-      cinema.add_movie(Movie.new('Top Gun', 'Action', 'Tony Scott', Date.new(1986, 5, 16)))
+      #cinema.add_movie(Movie.new('Top Gun', 'Action', 'Tony Scott', Date.new(1986, 5, 16)))
 
       expect(cinema.listing).to include('Top Gun')
     end
@@ -15,10 +17,10 @@ describe Cinema do
 
   describe 'remove' do
     it 'remove a movie from our listing' do
-      top_gun = Movie.new('Top Gun', 'Action', 'Tony Scott', Date.new(1986, 5, 16))
-      cinema = Cinema.new([top_gun])
+      cinema = Cinema.new
+      pako = double('Pako',{title: 'Top Gun', director: 'Tony Scott'})
 
-      cinema.remove_movie(top_gun)
+      cinema.remove_movie(pako)
 
       expect(cinema.listing).to_not include('Top Gun')
     end
@@ -26,11 +28,11 @@ describe Cinema do
 
   describe 'listing' do
     let(:cinema) do
-      die_hard = Movie.new('Die Hard', 'Action', 'John McTiernan', Date.new(1988, 7, 22))
-      aladdin = Movie.new('Aladdin', 'Animation', 'Ron Clements', Date.new(1992, 11, 25))
-      clerks = Movie.new('Clerks', 'Comedy', 'Kevin Smith', Date.new(1994, 11, 30))
+      die_hard_Db = double('die_hard_Db',{title: 'Die Hard', director: 'John McTiernan'})
+      aladdin_Db = double('aladdin_Db',{title: 'Aladdin', director: 'Ron Clements'})
+      clerks_Db = double('clerks_Db',{title: 'Clerks', director: 'Kevin Smith'})
 
-      Cinema.new([die_hard, aladdin, clerks])
+      Cinema.new([die_hard_Db, aladdin_Db, clerks_Db])
     end
 
     it 'returns an array with the title of our movies' do
